@@ -59,4 +59,17 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+     /**
+     * Set to null if empty
+     * @param $input
+     */
+    public function setRoleIdAttribute($input)
+    {
+        $this->attributes['role_id'] = $input ? $input : null;
+    }
+    
+    public function role()
+    {
+        return $this->belongsTo(role::class, 'role_id'); 
+    }
 }
