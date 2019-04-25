@@ -19,16 +19,17 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('jwt.auth', []);
+        $this->middleware('auth.role:admin', ['only' => ['blockUser']]);
     }
 
-    /**
-     * Get the authenticated User
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function me()
+  
+    public function blockUser()
     {
-        return response()->json(Auth::guard()->user());
+        return 'This is an admin route.';
+    }
+
+    public function profile()
+    {
+        return 'This route is for all users.';
     }
 }
