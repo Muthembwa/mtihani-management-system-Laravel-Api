@@ -68,8 +68,42 @@ class User extends Authenticatable implements JWTSubject
         $this->attributes['role_id'] = $input ? $input : null;
     }
     
-    public function role()
+    public function roles()
     {
-        return $this->belongsTo(role::class, 'role_id'); 
+        return $this
+        ->belongsToMany(role::class)
+        ->withTimestamps();; 
     }
+
+    public function authorizeRoles($roles)
+    {
+        if ($this->hasAnyRole($roles)){
+            return true;
+        }
+        abort(401,'This action is anauthirized.');
+            
+    }
+    
+    public function hasAnyRole($roles){
+        if (is_array($roles)){
+            foreach ($roles as $role){
+                if ($this->hasRole($role)){
+                    return true;
+                }
+            }
+        }else{
+            if($this->hasRole($roles))
+                return true;
+        }
+    }
+
+    public function hasRole($role){
+        if($this->roles()->where('title', $role)->first()){
+            return true; 
+        
+        //return $user->roles()->where('title','Admin')->exists();
+            
+          
+        }return false;
+}
 }
