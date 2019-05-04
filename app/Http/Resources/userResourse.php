@@ -23,7 +23,7 @@ class userResourse extends JsonResource
             'school' => $this->school,
             'created_at' => (string) $this->created_at,
             'updated_at' => (string) $this->updated_at,
-            'role' => $this->role, 
+            //'role' => new rolesResource($this->roles('id')), 
         ];
             
     }
