@@ -9,6 +9,7 @@ use App\Api\V1\Requests\LoginRequest;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use App\User;
+use App\role;
 use App\Http\Resources\userResourse;
 use Auth;
 
@@ -21,21 +22,28 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth.role:admin');
+        $this->middleware('auth.role:ExamAdmin');
     }
     
     /**Show all users as in the userResourse */
     public function index()
-    {
-      return userResourse::collection(User::with('roles')->paginate(25));
+    { 
+      return userResourse::collection(User::all());
     }
     
     /**store all users as in the userResourse */
     public function store(Request $request)
     {
       $user = User::create([
-        'role_id' => $request->role()->id,
-        'title' => $request->title,
+        'id' => $request->id,
+        'name' => $request->name,
+        'email' => $request->email,
+        'school'=> $request->school,
+        'password' =>$request->password,
+        //'created_at' => (string)$request->created_at,
+       // 'updated_at' => (string)$request->updated_at, 
+       // 'role_id' => $request->role()->id,
+        //'title' => $request->roles()->title,
       ]);
       //$roles = \App\role::get()->pluck('title', 'id')->prepend(trans('please Select'), '');
       return new userResourse($user);
@@ -63,4 +71,5 @@ class UserController extends Controller
 
       return response()->json(null, 204);
     }
+    
 }
