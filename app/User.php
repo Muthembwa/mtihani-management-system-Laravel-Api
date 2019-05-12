@@ -16,18 +16,14 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password','school',
-    ];
+    protected $fillable = ['name', 'email', 'password','school','school_id'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * Automatically creates hash for the user password.
@@ -65,16 +61,59 @@ class User extends Authenticatable implements JWTSubject
      */
     public function setRoleIdAttribute($input)
     {
-        $this->attributes['role_id'] = $input ? $input : null;
+        $this->attributes['school_id'] = $input ? $input : null;
     }
-    
+
+     //user_school relationship
+     public function school()
+     {
+         return $this
+         ->belongsTo(school::class)
+         ->withTimestamps()
+         ->withTrashed();
+     }
+    //user_roles relationship
     public function roles()
     {
         return $this
         ->belongsToMany(role::class)
-        ->withTimestamps();; 
+        ->withTimestamps()
+        ->withTrashed();
+    }
+  //User_subject relationship
+    public function subjects()
+    {
+        return $this
+        ->belongsToMany(Subject::class)
+        ->withTimestamps()
+        ->withTrashed(); 
     }
 
+    //user_streams relationship
+    public function streams()
+    {
+        return $this
+        ->belongsToMany(Stream::class)
+        ->withTimestamps()
+        ->withTrashed(); 
+    }
+    //user_exams relationship
+    public function exams()
+    {
+        return $this
+        ->belongsToMany(Exam::class)
+        ->withTimestamps()
+        ->withTrashed(); 
+    }
+
+    //students a teacher manage through stream
+    public function students()
+    {
+        return $this->hasManyThrough('App\Student', 'App\Stream');
+    }
+
+
+    //check whether a user has a role
     public function authorizeRoles($roles)
     {
         if ($this->hasAnyRole($roles)){
@@ -83,7 +122,7 @@ class User extends Authenticatable implements JWTSubject
         abort(401,'This action is anauthirized.');
             
     }
-    
+    //check whether a user has any role
     public function hasAnyRole($roles){
         if (is_array($roles)){
             foreach ($roles as $role){
@@ -96,7 +135,7 @@ class User extends Authenticatable implements JWTSubject
                 return true;
         }
     }
-
+    //check whether a user has a valid role
     public function hasRole($role){
         if($this->roles()->where('title', $role)->first()){
             return true; 
@@ -105,5 +144,6 @@ class User extends Authenticatable implements JWTSubject
             
           
         }return false;
-}
+    }
+  
 }
