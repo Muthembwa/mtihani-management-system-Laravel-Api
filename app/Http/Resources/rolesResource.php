@@ -18,6 +18,8 @@ class rolesResource extends JsonResource
        return [ 
                 'id' => $this->id,
                 'title' => $this->title,
-       ];
+                'created_at' => (string) $this->created_at,
+                'updated_at' => (string) $this->updated_at,
+        ];
     }
 }
