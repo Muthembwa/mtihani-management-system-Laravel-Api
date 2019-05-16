@@ -47,8 +47,7 @@ class Stream extends Model
     {
       return $this
         ->hasMany(Student::class)
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 
    //school relationship
@@ -66,8 +65,7 @@ class Stream extends Model
     public function class_teachers()
     {
         return $this->belongsToMany(User::class)
-        ->withTimestamps()
-        ->withTrashed();
+        ->withTimestamps();
     
     }
 

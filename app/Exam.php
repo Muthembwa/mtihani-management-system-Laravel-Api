@@ -27,8 +27,7 @@ class Exam extends Model
         return $this
         ->belongsToMany(school::class)
         ->as('schools')
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 
 
@@ -39,8 +38,7 @@ class Exam extends Model
         return $this
         ->belongsToMany(Stream::class)
         ->as('streams')
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 
     //users relationship
@@ -49,8 +47,7 @@ class Exam extends Model
     {
         return $this
         ->belongsToMany(User::class)
-        ->as('users')
-        ->withTrashed(); 
+        ->as('users'); 
     }
 
     //students relationship
@@ -60,8 +57,7 @@ class Exam extends Model
         return $this
         ->belongsToMany(Student::class)
         ->as('students')
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
     //marks relationship
 
@@ -70,8 +66,7 @@ class Exam extends Model
         return $this
         ->hasMany(Mark::class)
         ->withPivot('mark')
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 
     

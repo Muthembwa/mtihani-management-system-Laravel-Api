@@ -6,11 +6,12 @@ use Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-
+    //use softDeletes;
     /**
      * The attributes that are mass assignable.
      *
@@ -69,24 +70,21 @@ class User extends Authenticatable implements JWTSubject
      {
          return $this
          ->belongsTo(school::class)
-         ->withTimestamps()
-         ->withTrashed();
+         ->withTimestamps();
      }
     //user_roles relationship
     public function roles()
     {
         return $this
         ->belongsToMany(role::class)
-        ->withTimestamps()
-        ->withTrashed();
+        ->withTimestamps(); 
     }
   //User_subject relationship
     public function subjects()
     {
         return $this
         ->belongsToMany(Subject::class)
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 
     //user_streams relationship
@@ -94,16 +92,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this
         ->belongsToMany(Stream::class)
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
     //user_exams relationship
     public function exams()
     {
         return $this
         ->belongsToMany(Exam::class)
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 
     //students a teacher manage through stream

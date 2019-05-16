@@ -27,8 +27,7 @@ class school extends Model
    {
        return $this
        ->hasMany(User::class)
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->withTimestamps(); 
    }
 
    //streams relationship
@@ -36,8 +35,7 @@ class school extends Model
    {
        return $this
        ->hasMany(Stream::class)
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->withTimestamps(); 
    }
 
    //subjects relationship
@@ -46,8 +44,7 @@ class school extends Model
        return $this
        ->belongsToMany(Subject::class)
        ->as ('subjects')
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->withTimestamps(); 
    }
 
    //exams relationship
@@ -56,8 +53,7 @@ class school extends Model
        return $this
        ->belongsToMany(Exam::class)
        ->as('exams')
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->withTimestamps(); 
    }
 
    //students in a school 

@@ -29,8 +29,7 @@ class Subject extends Model
     {
         return $this
         ->belongsToMany(school::class)
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 
     //students relationship
@@ -40,8 +39,7 @@ class Subject extends Model
         return $this
         ->belongsToMany(Student::class, 'marks')
         ->as('masks')
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 
     //users relationship
@@ -49,8 +47,7 @@ class Subject extends Model
     {
         return $this
         ->belongsToMany(User::class)
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 
     //streams relationship
@@ -58,8 +55,7 @@ class Subject extends Model
     {
         return $this
         ->belongsToMany(Stream::class)
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 
     //exams relationship
@@ -68,8 +64,7 @@ class Subject extends Model
     {
         return $this
         ->belongsToMany(Exam::class)
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 }
 

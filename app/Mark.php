@@ -41,8 +41,7 @@ class Mark extends Model
    {
        return $this
        ->belongsTo(Exam::class, 'exam_id')
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->withTimestamps(); 
    }
     //student relationship
 
@@ -50,8 +49,7 @@ class Mark extends Model
    {
        return $this
        ->belongsTo(Student::class, 'student_id')
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->withTimestamps(); 
    }
     //subject relationship
 
@@ -59,8 +57,7 @@ class Mark extends Model
    {
        return $this
        ->belongsTo(Subject::class, 'subject_id')
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->withTimestamps(); 
    }
   
 }
