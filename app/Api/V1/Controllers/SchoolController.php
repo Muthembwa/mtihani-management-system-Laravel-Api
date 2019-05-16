@@ -1,11 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Api\V1\Controllers;
+
+
+use App\Http\Controllers\Controller;
+
 
 use Illuminate\Http\Request;
 
 class SchoolController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
