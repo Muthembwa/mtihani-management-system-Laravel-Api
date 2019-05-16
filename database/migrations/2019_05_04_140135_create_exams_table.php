@@ -16,7 +16,7 @@ class CreateExamsTable extends Migration
         if (! Schema::hasTable('exams')){
             Schema::create('exams', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->smallint('Year');
+                $table->year('Year');
                 $table->integer('term');
                 $table->integer('exam_code')->nullable()->unsigned();
                 $table->timestamps();

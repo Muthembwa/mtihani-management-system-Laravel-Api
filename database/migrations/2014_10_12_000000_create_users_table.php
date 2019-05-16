@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
                 $table->string('school')->nullable(false);
                 $table->rememberToken();
                 $table->timestamps();
+                $table->index(['deleted_at']);
+                $table->softDeletes();
+
             });
         } 
     }
