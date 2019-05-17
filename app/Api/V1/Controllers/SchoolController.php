@@ -17,7 +17,7 @@ class SchoolController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth.role:ExamAdmin');
+        $this->middleware('auth.role:SuperAdmin');
     }
     
     /**
@@ -38,9 +38,15 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        //storing a school
+        $school = school::create([
+            'id' => $request->id,
+            'schoolname' => $request->schoolname ]);
+            return response()->json([
+                'status' => 'ok'
+            ], 201);
 
+    }
     /**
      * Display the specified resource.
      *
