@@ -26,6 +26,7 @@ class SchoolController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
         return schoolResource::collection(school::all());
     }
@@ -53,9 +54,10 @@ class SchoolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(school $school)
     {
         //
+        return new schoolResource($school);
     }
 
     /**
