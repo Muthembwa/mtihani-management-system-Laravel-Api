@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password','school','school_id'];
+    protected $fillable = ['name', 'email', 'password', 'school_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -56,7 +56,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-     /**
+       /**
      * Set to null if empty
      * @param $input
      */
@@ -65,18 +65,19 @@ class User extends Authenticatable implements JWTSubject
         $this->attributes['school_id'] = $input ? $input : null;
     }
 
+
      //user_school relationship
      public function school()
      {
          return $this
-         ->belongsTo(school::class)
-         ->withTimestamps();
+         ->belongsTo(school::class);
      }
     //user_roles relationship
     public function roles()
     {
         return $this
         ->belongsToMany(role::class)
+        ->as ('roles')
         ->withTimestamps(); 
     }
   //User_subject relationship

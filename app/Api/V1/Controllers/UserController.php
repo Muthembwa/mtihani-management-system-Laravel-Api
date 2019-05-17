@@ -10,7 +10,8 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use App\User;
 use App\role;
-use App\Http\Resources\userResourse;
+use App\school;
+use App\Http\Resources\userResource;
 use Auth;
 
 class UserController extends Controller
@@ -28,8 +29,13 @@ class UserController extends Controller
     /**Show all users as in the userResourse */
     public function index()
     { 
-      return userResourse::collection(User::all());
-    }
+      
+
+      return userResource::collection(User::with('roles','school')->paginate(25));
+        }
+       //$role_name = $user->role->name;  
+      //return $role_name  ;
+    
     
     /**store all users as in the userResourse */
     public function store(Request $request)
@@ -39,7 +45,7 @@ class UserController extends Controller
         'name' => $request->name,
         'email' => $request->email,
         'school'=> $request->school,
-        'password' =>$request->password,
+        'password' =>$request->password
         //'created_at' => (string)$request->created_at,
        // 'updated_at' => (string)$request->updated_at, 
        // 'role_id' => $request->role()->id,
