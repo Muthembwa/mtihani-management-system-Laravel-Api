@@ -1,15 +1,24 @@
 <?php
 
 namespace App\Api\V1\Controllers;
-
-
 use App\Http\Controllers\Controller;
-
-
 use Illuminate\Http\Request;
+use App\Http\Resources\schoolResource;
+use App\school;
+//use App\role;
+
 
 class SchoolController extends Controller
 {
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth.role:ExamAdmin');
+    }
     
     /**
      * Display a listing of the resource.
@@ -18,7 +27,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //
+        return schoolResource::collection(school::all());
     }
 
     /**
