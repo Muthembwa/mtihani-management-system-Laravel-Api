@@ -73,7 +73,11 @@ class StreamController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		//
+        //
+        $stream = Stream::findOrFail($id);
+		$stream->update($request->only('class_name'));
+
+        return new streamResource($stream);
 	}
 
     /**
