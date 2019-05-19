@@ -7,6 +7,18 @@ use Illuminate\Http\Request;
 class StreamController extends Controller
 {
     /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth.role:SuperAdmin');
+        $this->middleware('auth.role:ClassTeacher');
+
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
