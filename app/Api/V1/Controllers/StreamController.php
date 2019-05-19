@@ -1,6 +1,7 @@
 <?php
 namespace App\Api\V1\Controllers;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Resources\streamResource;
 use App\Stream;
 
@@ -14,9 +15,9 @@ class StreamController extends Controller
     public function __construct()
     {
         $this->middleware('auth.role:SuperAdmin');
-        $this->middleware('auth.role:SchoolAdmin',['only' => ['show']]);
-        $this->middleware('auth.role:ExamTeacher',['only' => [ 'update', 'show', 'destroy']]);
-        $this->middleware('auth.role:ClassTeacher',['only' => [ 'store','update', 'show', 'destroy']]);
+       // $this->middleware('auth.role:SchoolAdmin',['only' => ['show']]);
+        //$this->middleware('auth.role:ExamTeacher',['only' => [ 'update', 'show', 'destroy']]);
+       // $this->middleware('auth.role:ClassTeacher',['only' => [ 'store','update', 'show', 'destroy']]);
 
     }
     
@@ -39,7 +40,12 @@ class StreamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $stream = Stream::create([
+            'id' => $request->id,
+            'class_name' => $request->class_name ]);
+            return response()->json([
+                'status' => 'Created'
+            ], 201);
     }
 
     /**
