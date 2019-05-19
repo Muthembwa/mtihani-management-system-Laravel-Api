@@ -88,6 +88,9 @@ class StreamController extends Controller
      */
     public function destroy($id)
     {
-        //
+		if ($stream=Stream::find($id)->delete()){
+            return response()->json([
+                'status' => 'Deleted'
+            ], 200);}
     }
 }
