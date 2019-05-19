@@ -95,6 +95,7 @@ class SchoolController extends Controller
             'status' => 'Hio shule haiko man'
         ], 204);}
     }
+    
 
 
     	
