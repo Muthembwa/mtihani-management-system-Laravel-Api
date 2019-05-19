@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth.role:ExamAdmin');
+        $this->middleware('auth.role:SuperAdmin');
     }
     
     /**Show all users as in the userResourse */
@@ -31,7 +31,7 @@ class UserController extends Controller
     { 
       
 
-      return userResource::collection(User::with('roles','school')->paginate(25));
+      return userResource::collection(User::with('roles')->paginate(25));
         }
        //$role_name = $user->role->name;  
       //return $role_name  ;
@@ -44,7 +44,7 @@ class UserController extends Controller
         'id' => $request->id,
         'name' => $request->name,
         'email' => $request->email,
-        'school'=> $request->school,
+        //'school'=> $request->school,
         'password' =>$request->password
         //'created_at' => (string)$request->created_at,
        // 'updated_at' => (string)$request->updated_at, 
@@ -52,11 +52,11 @@ class UserController extends Controller
         //'title' => $request->roles()->title,
       ]);
       //$roles = \App\role::get()->pluck('title', 'id')->prepend(trans('please Select'), '');
-      return new userResourse($user);
+      return new userResource($user);
     }
     public function show(User $user)
     {
-      return new userResourse($user);
+      return new userResource($user);
     }
 
     public function update(Request $request, User $user)
