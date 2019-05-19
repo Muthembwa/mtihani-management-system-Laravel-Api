@@ -1,6 +1,7 @@
 <?php                                                                                                                                 
 
 namespace App\Api\V1\Controllers;
+//use App\Http\Controllers;
 use App\User;
 use App\role;
 //use App\Http\Middleware\RoleAuthorization;
@@ -12,13 +13,10 @@ class RoleController extends \App\Http\Controllers\Controller
     //
     public function __construct()
     {
-        //$this->middleware('auth.role:ExamAdmin');
+        $this->middleware('auth.role:ExamAdmin');
     }
     public function index()
-    
     {
-      $this->middleware('auth.role:SuperAdmin');
-      $this->middleware('auth.role:ExamAdmin');
       return rolesResource::collection(role::all());
     }
 
