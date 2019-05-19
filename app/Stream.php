@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Stream
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 */
 class Stream extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
     /**
     * The attributes that are mass assignable.
     *
@@ -46,8 +46,7 @@ class Stream extends Model
     public function students()
     {
       return $this
-        ->hasMany(Student::class)
-        ->withTimestamps(); 
+        ->hasMany(Student::class); 
     }
 
    //school relationship
@@ -56,8 +55,8 @@ class Stream extends Model
     {
        return $this
        ->belongsTo(school::class, 'school_id')
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->withTimestamps();
+       
     }
 
     //users relationship
@@ -75,8 +74,8 @@ class Stream extends Model
     {
        return $this
        ->belongsToMany(Exam::class)
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->withTimestamps();
+      
     }
 
     //marks for the stream through exams
