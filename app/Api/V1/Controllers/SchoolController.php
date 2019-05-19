@@ -45,7 +45,7 @@ class SchoolController extends Controller
             'id' => $request->id,
             'schoolname' => $request->schoolname ]);
             return response()->json([
-                'status' => 'ok'
+                'status' => 'Created'
             ], 201);
 
     }
@@ -77,10 +77,6 @@ class SchoolController extends Controller
 		$school->update($request->only('schoolname'));
 
         return new schoolResource($school);
- 
-	
- 
- 
 	}
 
     /**
@@ -89,8 +85,17 @@ class SchoolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Request $request, $id)
+	{
+		if ($school=school::find($id)->delete()){
+            return response()->json([
+                'status' => 'Deleted'
+            ], 201);}
+        else{ return response()->json([
+            'status' => 'Hio shule haiko man'
+        ], 204);}
     }
+
+
+    	
 }
