@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+namespace App\Api\V1\Controllers;
+use App\Http\Controllers\Controller;
 
 class StreamController extends Controller
 {
