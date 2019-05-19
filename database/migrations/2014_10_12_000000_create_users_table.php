@@ -17,13 +17,13 @@ class CreateUsersTable extends Migration
             Schema::create('users', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name');
+                $table->integer('school_id')->unsigned();
                 $table->string('email')->unique();
-                $table->string('password');
-                $table->string('school')->nullable(false);
+                $table->string('password');    
                 $table->rememberToken();
                 $table->timestamps();
-                $table->index(['deleted_at']);
-                $table->softDeletes();
+                //$table->index(['deleted_at']);
+                //$table->softDeletes();
 
             });
         } 
