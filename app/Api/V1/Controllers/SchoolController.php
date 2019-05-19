@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\schoolResource;
 use App\school;
+use App\User;
 //use App\role;
 
 
@@ -48,29 +49,39 @@ class SchoolController extends Controller
             ], 201);
 
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(school $school)
-    {
-        //
-        return new schoolResource($school);
-    }
+    	/**
+	 * Show-Action
+	 *
+	 * @param Request $request
+	 * @param int $id
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function show(Request $request, $id)
+	{
+		$school = school::find($id);
+ 
+        return new schoolResource($school);	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    	/**
+	 * Update-Action
+	 *
+	 * @param Request $request
+	 * @param int $id
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function update(Request $request, $id)
+	{
+		$school = school::findOrFail($id);
+		$school->update($request->only('schoolname'));
+
+        return new schoolResource($school);
+ 
+	
+ 
+ 
+	}
 
     /**
      * Remove the specified resource from storage.
