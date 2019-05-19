@@ -26,7 +26,8 @@ class StreamController extends Controller
      */
     public function index()
     {
-        //
+        return streamResource::collection(Stream::all());
+
     }
 
     /**
