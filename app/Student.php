@@ -34,8 +34,7 @@ class Student extends Model
     public function stream()
     {
         return $this
-        ->belongsTo(Stream::class, 'stream_id')
-        ->withTimestamps(); 
+        ->belongsTo(Stream::class, 'stream_id'); 
     }
     //subjects relationship
 
