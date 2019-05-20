@@ -61,7 +61,9 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+		$student = Student::find($id);
+ 
+        return new studentResource($student);	
     }
 
     /**
@@ -73,7 +75,7 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+		//	
     }
 
     /**
