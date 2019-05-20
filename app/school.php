@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class school extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
     /**
     * The attributes that are mass assignable.
     *
@@ -26,18 +28,14 @@ class school extends Model
    public function users()
    {
        return $this
-       ->hasMany(User::class)
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->hasMany(User::class); 
    }
 
    //streams relationship
    public function streams()
    {
        return $this
-       ->hasMany(Stream::class)
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->hasMany(Stream::class); 
    }
 
    //subjects relationship
@@ -46,8 +44,7 @@ class school extends Model
        return $this
        ->belongsToMany(Subject::class)
        ->as ('subjects')
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->withTimestamps(); 
    }
 
    //exams relationship
@@ -56,8 +53,7 @@ class school extends Model
        return $this
        ->belongsToMany(Exam::class)
        ->as('exams')
-       ->withTimestamps()
-       ->withTrashed(); 
+       ->withTimestamps(); 
    }
 
    //students in a school 

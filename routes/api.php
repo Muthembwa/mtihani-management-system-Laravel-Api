@@ -13,8 +13,17 @@ $api->version('v1', function (Router $api) {
         $api->post('reset', 'App\\Api\\V1\\Controllers\\ResetPasswordController@resetPassword');
         $api->post('logout', 'App\\Api\\V1\\Controllers\\LogoutController@logout');
         $api->post('refresh', 'App\\Api\\V1\\Controllers\\RefreshController@refresh');
-        $api->get('users','App\\Api\\V1\\Controllers\\UserController@index');
-        $api->get('roles', 'App\\Api\\V1\\Controllers\\RoleController@index');
+
+
+
+        $api->resource('users','App\\Api\\V1\\Controllers\\UserController');
+        $api->resource('roles', 'App\\Api\\V1\\Controllers\\RoleController');
+        $api->resource('schools','App\\Api\\V1\\Controllers\\SchoolController');
+        $api->resource('streams', 'App\\Api\\V1\\Controllers\\StreamController');
+        $api->resource('students','App\\Api\\V1\\Controllers\\StudentController');
+        $api->resource('subjects', 'App\\Api\\V1\\Controllers\\SubjectController');
+        $api->resource('exams','App\\Api\\V1\\Controllers\\ExmaController');
+        $api->resource('marks', 'App\\Api\\V1\\Controllers\\MarkController');
     });
 
     

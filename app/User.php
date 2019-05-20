@@ -6,17 +6,18 @@ use Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-
+    //use softDeletes;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password','school','school_id'];
+    protected $fillable = ['name', 'email', 'password', 'school_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -55,7 +56,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-     /**
+       /**
      * Set to null if empty
      * @param $input
      */
@@ -64,29 +65,27 @@ class User extends Authenticatable implements JWTSubject
         $this->attributes['school_id'] = $input ? $input : null;
     }
 
+
      //user_school relationship
      public function school()
      {
          return $this
-         ->belongsTo(school::class)
-         ->withTimestamps()
-         ->withTrashed();
+         ->belongsTo(school::class);
      }
     //user_roles relationship
     public function roles()
     {
         return $this
         ->belongsToMany(role::class)
-        ->withTimestamps()
-        ->withTrashed();
+        ->as ('roles')
+        ->withTimestamps(); 
     }
   //User_subject relationship
     public function subjects()
     {
         return $this
         ->belongsToMany(Subject::class)
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 
     //user_streams relationship
@@ -94,16 +93,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this
         ->belongsToMany(Stream::class)
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
     //user_exams relationship
     public function exams()
     {
         return $this
         ->belongsToMany(Exam::class)
-        ->withTimestamps()
-        ->withTrashed(); 
+        ->withTimestamps(); 
     }
 
     //students a teacher manage through stream
