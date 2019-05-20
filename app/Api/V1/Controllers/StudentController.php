@@ -1,11 +1,26 @@
 <?php
-
-namespace App\Http\Controllers;
-
+namespace App\Api\V1\Controllers;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Student;
+use App\Http\Resources\studentResource;
 
 class StudentController extends Controller
 {
+    
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth.role:SuperAdmin');
+       // $this->middleware('auth.role:SchoolAdmin',['only' => ['show']]);
+        //$this->middleware('auth.role:ExamTeacher',['only' => [ 'update', 'show', 'destroy']]);
+       // $this->middleware('auth.role:ClassTeacher',['only' => [ 'store','update', 'show', 'destroy']]);
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +29,7 @@ class StudentController extends Controller
     public function index()
     {
         //
+        return studentResource::collection(Student::all());
     }
 
     /**
