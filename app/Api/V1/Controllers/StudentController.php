@@ -40,7 +40,17 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //storing a student
+         $student = Student::create([
+            'id' => $request->id,
+            'adm_no' => $request->adm_no,
+            'student_name' => $request->student_name,
+            'parents_name' => $request->parents_name ,
+            'parents_email' => $request->parents_email,
+            'parents_phone_no' => $request->parents_phone_no,  ]);
+            return response()->json([
+                'status' => 'Created'
+            ], 201);
     }
 
     /**
