@@ -16,10 +16,6 @@ class StudentController extends Controller
     public function __construct()
     {
         $this->middleware('auth.role:SuperAdmin');
-       // $this->middleware('auth.role:SchoolAdmin',['only' => ['show']]);
-        //$this->middleware('auth.role:ExamTeacher',['only' => [ 'update', 'show', 'destroy']]);
-       // $this->middleware('auth.role:ClassTeacher',['only' => [ 'store','update', 'show', 'destroy']]);
-
     }
     /**
      * Display a listing of the resource.
