@@ -91,10 +91,7 @@ class SchoolController extends Controller
 		if ($school=school::find($id)->delete()){
             return response()->json([
                 'status' => 'Deleted'
-            ], 201);}
-        else{ return response()->json([
-            'status' => 'Hio shule haiko man'
-        ], 204);}
+            ], 200);}
     }
     
 
