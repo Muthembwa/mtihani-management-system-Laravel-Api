@@ -1,12 +1,23 @@
 <?php
 
 namespace App\Api\V1\Controllers;
-use App\Http\Controllers\Controller;;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Subject;
+Use App\Http\Resources\subjectResource;
+
 
 class SubjectController extends Controller
 {
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth.role:SuperAdmin');
+    }
     /**
      * Display a listing of the resource.
      *
