@@ -61,9 +61,12 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-		$student = Student::find($id);
- 
-        return new studentResource($student);	
+		if ($student = Student::find($id)){
+            return new studentResource($student);	
+        }
+        return response()->json([
+            'status' => 'This candidate does not exist'
+        ], 404);
     }
 
     /**
@@ -88,6 +91,9 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if ($student=Student::find($id)->delete()){
+            return response()->json([
+                'status' => 'Deleted'
+            ], 200);}
     }
 }
