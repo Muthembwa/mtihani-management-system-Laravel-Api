@@ -61,7 +61,8 @@ class SchoolController extends Controller
 	{
 		$school = school::find($id);
  
-        return new schoolResource($school);	}
+        return new schoolResource($school);	
+    }
 
     	/**
 	 * Update-Action
