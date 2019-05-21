@@ -75,7 +75,9 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-		//	
+		$student = Student::findOrFail($id);
+        $student->update($request->only(['adm_no','student_name','stream','parents_name','parents_email','parents_phone_no']));
+        return new studentResource($student);	
     }
 
     /**
