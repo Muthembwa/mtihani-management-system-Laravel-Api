@@ -56,7 +56,12 @@ class SubjectController extends Controller
      */
     public function show($id)
     {
-        //
+        if ($subject = Subject::find($id)){
+            return new subjectResource($subject);	
+        }
+        return response()->json([
+            'status' => 'This Subject does not exist'
+        ], 404);
     }
 
     /**
