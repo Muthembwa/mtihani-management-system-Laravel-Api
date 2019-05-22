@@ -25,7 +25,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        return subjectResource::collection(Subject::all());
+
         
     }
 
@@ -37,7 +38,7 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
