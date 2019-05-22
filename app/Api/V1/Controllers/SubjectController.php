@@ -38,8 +38,15 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $subject = Subject::create([
+            'id' => $request->id,
+            'subjectname' => $request->subjectname,
+            'subject_code' => $request ->subject_code ]);
+            return response()->json([
+                'status' => 'Created'
+            ], 201);
     }
+
 
     /**
      * Display the specified resource.
