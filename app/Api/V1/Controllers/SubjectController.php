@@ -90,6 +90,8 @@ class SubjectController extends Controller
             return response()->json([
                 'status' => 'Deleted'
             ], 200);}
-            return response()->json([],204);
+            return response()->json([
+                'status' => 'This Subject does not exist'
+            ], 404);
     }
 }
