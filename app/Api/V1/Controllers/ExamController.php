@@ -5,6 +5,7 @@ use App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Exam;
+use App\Http\Resources\examResource;
 
 class ExamController extends Controller
 {
