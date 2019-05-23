@@ -73,7 +73,13 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($subject = Subject::find($id)){
+            $subject->update($request->only(['subjectname','subject_code']));
+            return new subjectResource($subject);
+        }
+        return response()->json([
+            'status' => 'This Subject does not exist'
+        ], 404);
     }
 
     /**
