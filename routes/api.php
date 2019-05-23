@@ -22,7 +22,7 @@ $api->version('v1', function (Router $api) {
         $api->resource('streams', 'App\\Api\\V1\\Controllers\\StreamController');
         $api->resource('students','App\\Api\\V1\\Controllers\\StudentController');
         $api->resource('subjects', 'App\\Api\\V1\\Controllers\\SubjectController');
-        $api->resource('exams','App\\Api\\V1\\Controllers\\ExmaController');
+        $api->resource('exams','App\\Api\\V1\\Controllers\\ExamController');
         $api->resource('marks', 'App\\Api\\V1\\Controllers\\MarkController');
     });
 
