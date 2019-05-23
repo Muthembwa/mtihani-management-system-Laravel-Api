@@ -70,7 +70,7 @@ class ExamController extends Controller
             ], 201);
         }
         return response()->json([
-            'status' => 'This Subject does not exist'
+            'status' => 'This Exam does not exist'
         ], 404);
     }
 
