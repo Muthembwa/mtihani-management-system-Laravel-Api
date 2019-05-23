@@ -1,7 +1,6 @@
 <?php
 namespace App\Api\V1\Controllers;
-
-use App\Http\Controllers;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Exam;
@@ -16,7 +15,7 @@ class ExamController extends Controller
      */
     public function index()
     {
-        
+        return examResource::collection(Exam::all());
     }
 
     /**
