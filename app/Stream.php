@@ -54,9 +54,7 @@ class Stream extends Model
     public function school()
     {
        return $this
-       ->belongsTo(school::class, 'school_id')
-       ->withTimestamps();
-       
+       ->belongsTo(school::class, 'school_id');
     }
 
     //users relationship
