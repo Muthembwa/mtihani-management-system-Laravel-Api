@@ -82,6 +82,13 @@ class ExamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if ($exam=Exam::find($id)){
+            $exam->delete();
+            return response()->json([
+                'status' => 'Deleted'
+            ], 200);}
+            return response()->json([
+                'status' => 'This Exam does not exist'
+            ], 404);
     }
 }
