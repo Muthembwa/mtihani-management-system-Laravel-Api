@@ -1,6 +1,7 @@
 <?php
+namespace App\Api\V1\Controllers;
 
-namespace App\Http\Controllers;
+use App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class ExamController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
