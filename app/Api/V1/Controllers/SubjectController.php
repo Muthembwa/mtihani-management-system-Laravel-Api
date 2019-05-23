@@ -88,8 +88,13 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id)  
     {
-        //
+        if ($subject=Subject::find($id)){
+            $subject->delete();
+            return response()->json([
+                'status' => 'Deleted'
+            ], 200);}
+            return response()->json([],204);
     }
 }
