@@ -25,11 +25,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        return subjectResource::collection(Subject::all());
-
-        
+        return subjectResource::collection(Subject::all());  
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -46,8 +43,6 @@ class SubjectController extends Controller
                 'status' => 'Created'
             ], 201);
     }
-
-
     /**
      * Display the specified resource.
      *
