@@ -63,7 +63,15 @@ class ExamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($exam = Exam::find($id)){
+            $exam->update($request->only(['examname','term','exam_code']));
+            return response()->json([
+                'status' => 'Exam updated'
+            ], 201);
+        }
+        return response()->json([
+            'status' => 'This Subject does not exist'
+        ], 404);
     }
 
     /**
