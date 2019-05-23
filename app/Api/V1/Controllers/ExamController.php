@@ -1,8 +1,10 @@
 <?php
-
-namespace App\Http\Controllers;
+namespace App\Api\V1\Controllers;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Exam;
+use App\Http\Resources\examResource;
 
 class ExamController extends Controller
 {
@@ -13,7 +15,7 @@ class ExamController extends Controller
      */
     public function index()
     {
-        //
+        return examResource::collection(Exam::all());
     }
 
     /**
@@ -25,6 +27,15 @@ class ExamController extends Controller
     public function store(Request $request)
     {
         //
+        $exam = Exam::create([
+            'id'=>$request->id,
+            'examname'=>$request->examname,
+            'term'=>$request->term,
+            'exam_code'=>$request->exam_code
+        ]);
+        return response()->json([
+            'status' => 'Created'
+        ], 201);
     }
 
     /**
@@ -35,7 +46,12 @@ class ExamController extends Controller
      */
     public function show($id)
     {
-        //
+        if($exam = Exam::find($id)){
+            return new examResource ($exam);
+        } 
+        return response()->json([
+            'status'=> 'The Exam does not exist'
+        ],404);
     }
 
     /**
@@ -47,7 +63,15 @@ class ExamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($exam = Exam::find($id)){
+            $exam->update($request->only(['examname','term','exam_code']));
+            return response()->json([
+                'status' => 'Exam updated'
+            ], 201);
+        }
+        return response()->json([
+            'status' => 'This Exam does not exist'
+        ], 404);
     }
 
     /**
@@ -58,6 +82,13 @@ class ExamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if ($exam=Exam::find($id)){
+            $exam->delete();
+            return response()->json([
+                'status' => 'Deleted'
+            ], 200);}
+            return response()->json([
+                'status' => 'This Exam does not exist'
+            ], 404);
     }
 }

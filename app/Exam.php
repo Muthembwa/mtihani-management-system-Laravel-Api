@@ -11,7 +11,7 @@ class Exam extends Model
      *
      * @var array
      */
-    protected $fillable = ['Year', 'term', 'exam_code'];
+    protected $fillable = ['examname', 'term', 'exam_code'];
 
     /**
      * The attributes that should be hidden for arrays.
