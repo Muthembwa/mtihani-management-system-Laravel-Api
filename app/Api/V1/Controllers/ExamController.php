@@ -46,7 +46,12 @@ class ExamController extends Controller
      */
     public function show($id)
     {
-        //
+        if($exam = Exam::find($id)){
+            return new examResource ($exam);
+        } 
+        return response()->json([
+            'status'=> 'The Exam does not exist'
+        ],404);
     }
 
     /**
