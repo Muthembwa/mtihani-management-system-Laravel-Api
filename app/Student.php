@@ -13,7 +13,7 @@ class Student extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'adm_no','student_name', 'parents_name','parents_email','parents_phone_no','stream_id'];
+    protected $fillable = [ 'adm_no','student_name', 'stream_id','parents_name','parents_email','parents_phone_no'];
     
     /**
      * The attributes that should be hidden for arrays.
@@ -41,8 +41,7 @@ class Student extends Model
     public function subjects() 
     {
         return $this
-        ->belongsToMany(Subject::class, 'marks')
-        ->as('marks')
+        ->belongsToMany(Subject::class)
         ->withTimestamps(); 
     }
     //exams relationship
@@ -53,6 +52,10 @@ class Student extends Model
         ->as('exams')
         ->withTimestamps(); 
    }
-
+   public function marks()
+    {
+        return $this
+        ->hasMany(Mark::class);
+    }
     
 }

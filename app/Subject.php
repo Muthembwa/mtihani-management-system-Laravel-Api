@@ -37,8 +37,7 @@ class Subject extends Model
     public function students()
     {
         return $this
-        ->belongsToMany(Student::class, 'marks')
-        ->as('masks')
+        ->belongsToMany(Student::class)
         ->withTimestamps(); 
     }
 
@@ -65,6 +64,11 @@ class Subject extends Model
         return $this
         ->belongsToMany(Exam::class)
         ->withTimestamps(); 
+    }
+    public function marks()
+    {
+        return $this
+        ->hasMany(Mark::class);
     }
 }
 
