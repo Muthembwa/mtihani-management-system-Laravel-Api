@@ -41,9 +41,11 @@ class StudentController extends Controller
             'id' => $request->id,
             'adm_no' => $request->adm_no,
             'student_name' => $request->student_name,
+            'stream_id'=>$request->stream_id,
             'parents_name' => $request->parents_name ,
             'parents_email' => $request->parents_email,
             'parents_phone_no' => $request->parents_phone_no,  ]);
+            
             return response()->json([
                 'status' => 'Created'
             ], 201);

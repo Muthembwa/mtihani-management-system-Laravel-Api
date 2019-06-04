@@ -31,7 +31,7 @@ class UserController extends Controller
     { 
       
 
-      return userResource::collection(User::with('roles')->paginate(25));
+      return userResource::collection(User::all());
         }
        //$role_name = $user->role->name;  
       //return $role_name  ;
