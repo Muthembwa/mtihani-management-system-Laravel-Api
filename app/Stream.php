@@ -79,6 +79,6 @@ class Stream extends Model
     //marks for the stream through exams
     public function marks()
     {
-        return $this->hasManyThrough('App\Mark', 'App\Exam');
+        return $this->hasManyThrough('App\Mark', 'App\Student');
     }
 }
