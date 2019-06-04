@@ -17,8 +17,10 @@ class CreateMarksTable extends Migration
         Schema::create('marks', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('student_id')->unsigned();
+                $table->integer('exam_id')->unsigned();
                 $table->integer('subject_id')->unsigned();
                 $table->integer('mark');
+                $table->timestamps();
                // this will be added  to exams_marks table
                // $table->integer('rank');
                 //$table->integer('avarage');
