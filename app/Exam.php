@@ -33,7 +33,7 @@ class Exam extends Model
 
     //streams relationship
 
-    public function stream()
+    public function streams()
     {
         return $this
         ->belongsToMany(Stream::class)
@@ -49,6 +49,14 @@ class Exam extends Model
         ->belongsToMany(User::class)
         ->as('users'); 
     }
+    public function subjects() 
+    {
+        return $this
+        ->belongsToMany(Subject::class)
+        ->as('subjects')
+        ->withTimestamps(); 
+    }
+
 
     //students relationship
 
@@ -61,13 +69,12 @@ class Exam extends Model
     }
     //marks relationship
 
-    public function marks() 
-    {
-        return $this
-        ->hasMany(Mark::class)
-        ->withPivot('mark')
-        ->withTimestamps(); 
-    }
+   //marks for the school through exams
+   public function marks()
+   {
+       return $this
+       ->hasMany('App\Mark');
+   }
 
     
 }
