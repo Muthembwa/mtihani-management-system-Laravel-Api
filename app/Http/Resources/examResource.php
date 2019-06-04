@@ -19,6 +19,11 @@ class examResource extends JsonResource
             'examname' => $this->examname,
             'term' => $this->term,
             'exam_code' => $this->exam_code,  
+            'streams' => $this->streams,
+            'subject' => $this->subjects,
+            'students'=>$this->students,
+            'marks'=>$this->marks,
+            'users'=> $this->users,
             'created_at' => (string) $this->created_at,
             'updated_at' => (string) $this->updated_at,
     ];

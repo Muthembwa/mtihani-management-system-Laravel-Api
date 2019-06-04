@@ -16,10 +16,9 @@ class markResource extends JsonResource
     {
         return [ 
             'id' => $this->id,
-            'mark' => $this->mark,
-            'exam' => examResource::collection($this->students),
-            'student' => studentResource::collection($this->students),
-            'subject' => studentResource::collection($this->subjects('id')),
+            'student' => $this->student,
+            'subject' => $this->subject,  
+            'marks' => $this->mark,              
             'created_at' => (string) $this->created_at,
             'updated_at' => (string) $this->updated_at,
         ];
