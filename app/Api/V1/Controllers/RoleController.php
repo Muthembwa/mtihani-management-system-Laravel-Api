@@ -13,7 +13,7 @@ class RoleController extends \App\Http\Controllers\Controller
     //
     public function __construct()
     {
-        $this->middleware('auth.role:ExamAdmin');
+        $this->middleware('auth.role:SuperAdmin');
     }
     public function index()
     {
@@ -31,5 +31,9 @@ class RoleController extends \App\Http\Controllers\Controller
         ]);
 
       return new rolesResource($role);
+    }
+    public function show(User $role)
+    {
+      return new userResource($role);
     }
 }
